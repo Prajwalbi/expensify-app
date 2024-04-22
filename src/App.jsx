@@ -25,18 +25,13 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 const App = () =>{
   const store = configureStore();
- const expenseOne =  store.dispatch(addExpense({
-    description: "water bill",
-    note: "boll of month March",
-    amount: 5000,
-    createdAt: 3000
-  }));
-  store.dispatch(addExpense({
-    description: "Gas bill",
-    note: "bill of month April",
-    amount: 2500,
-    createdAt: 3500
-  }));
+//  const expenseOne =  store.dispatch(addExpense({
+//     description: "water bill",
+//     note: "boll of month March",
+//     amount: 5000,
+//     createdAt: 3000
+//   }));
+
 
   // store.dispatch(setTextFilter("bill"));
   
@@ -45,12 +40,7 @@ const App = () =>{
     // console.log("id is ", expenseOne.expense.description);
     // console.log(expenseOne.expense.id);
     // store.dispatch(removeExpense({id : expenseOne.expense.id}));
-    store.dispatch(addExpense({
-      description: "Rent",
-      note: "bill of month April",
-      amount: 7000,
-      createdAt:7000
-    }));
+
 
     // setTimeout(()=>{
     //   console.log("removing");
@@ -58,7 +48,7 @@ const App = () =>{
     // }, 3000);
    
     // store.dispatch(removeExpense(expenseOne.expense.id));
-  const state = (store.getState());
+  // const state = (store.getState());
   // console.log(getVisibleExpenses(state.expenses,state.filters));
   return (<div>
           
