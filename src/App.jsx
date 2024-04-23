@@ -1,25 +1,13 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import { BrowserRouter, Route , Link, NavLink} from 'react-router-dom';
 import "./components/styles/styles.scss";
-import './App.css';
-import Header from './components/Header';
 import AppRouter from './routers/AppRouter';
 import Redux from './playground/Redux';
-import ReduxExpensify from './playground/ReduxExpensify';
 import configureStore from './store/configureStore.js';
-import { addExpense } from './actions/expenses.js';
-import { editExpense } from './actions/expenses.js';
 import getVisibleExpenses from './selectors/expenses.js';
-import { setTextFilter } from './actions/filters.js';
-import HOCCaller from './playground/HOCCaller.jsx';
-import AuthInfo from './playground/HOCCaller.jsx';
 import { Provider } from 'react-redux';
-import { removeExpense } from './actions/expenses.js';
-
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import "normalize.css/normalize.css";
 
 
 
@@ -55,6 +43,7 @@ const App = () =>{
            <Provider store={store}>
            
              <LocalizationProvider dateAdapter={AdapterDayjs}>
+               {/* { console.log("Testing")  } */}
               <AppRouter />
               </LocalizationProvider>
            </Provider>
