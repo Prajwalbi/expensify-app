@@ -11,7 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 
 const now = moment();
-console.log(now.format("MMM Do YYYY"));
+// console.log(now.format("MMM Do YYYY"));
 export default class ExpenseForm extends React.Component {
     constructor(props){
         super(props);
@@ -78,7 +78,7 @@ export default class ExpenseForm extends React.Component {
     } 
     
     render() {
-        console.log("Props from expense form ", this.props);
+        // console.log("Props from expense form ", this.props);
         const { description, note, amount, selected } = this.state;
        
         return (

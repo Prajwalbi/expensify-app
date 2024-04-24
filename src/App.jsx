@@ -37,7 +37,7 @@ const App = () =>{
    
     // store.dispatch(removeExpense(expenseOne.expense.id));
   // const state = (store.getState());
-  // console.log(getVisibleExpenses(state.expenses,state.filters));
+  // console.log("expenses from App " , getVisibleExpenses(state.expenses,state.filters));
   return (<div>
           
            <Provider store={store}>

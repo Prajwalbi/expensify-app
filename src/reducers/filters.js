@@ -9,7 +9,7 @@ const filtersRedecerDefaultState = {
 }
 const filtersRedecer = (state = filtersRedecerDefaultState, action) => {
 
-    console.log( moment().startOf("month").toDate());
+    // console.log( moment().startOf("month").toDate());
    
     switch(action.type){
         case "SET_TEXT_FILTER":
