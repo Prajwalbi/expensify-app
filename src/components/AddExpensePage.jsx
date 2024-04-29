@@ -1,7 +1,8 @@
 import React from "react";
 import ExpenseForm from "./ExpenseForm";
 import { connect } from "react-redux";
-import { addExpense } from "../actions/expenses";
+// import { startAddExspense } from "../actions/expenses";
+import { startAddExpense } from "../actions/expenses";
 import { useNavigate } from "react-router-dom";
 const AddExpensePage = (props) =>{
     const navigate = useNavigate();
@@ -11,7 +12,8 @@ const AddExpensePage = (props) =>{
 
             onSubmit = {(expense) => {
                 console.log("add expense " ,expense);
-                props.dispatch(addExpense(expense));
+                props.startAddExpense(expense); // Dispatch the action using props
+                // startAddExspense(expense);
                 navigate("/", { replace: true })
                 
             }}
@@ -20,8 +22,12 @@ const AddExpensePage = (props) =>{
     </div>
   }
 
- const mapStateToProps = (state) => {
-    return { expense: state.expenses[0] }
- }
-  
-  export default  connect(mapStateToProps)(AddExpensePage)
+// mapDispatchToProps function to map the startAddExpense action creator to props
+const mapDispatchToProps = (dispatch) => ({
+    startAddExpense: (expense) => dispatch(startAddExpense(expense))
+});
+
+// Connect the component to the Redux store and map the startAddExpense action creator to props
+export default connect(null, mapDispatchToProps)(AddExpensePage);
+
+
