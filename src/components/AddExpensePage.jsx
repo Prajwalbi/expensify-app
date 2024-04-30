@@ -13,7 +13,6 @@ const AddExpensePage = (props) =>{
             onSubmit = {(expense) => {
                 console.log("add expense " ,expense);
                 props.startAddExpense(expense); // Dispatch the action using props
-                // startAddExspense(expense);
                 navigate("/", { replace: true })
                 
             }}

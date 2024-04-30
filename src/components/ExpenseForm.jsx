@@ -1,26 +1,17 @@
-
-
 import React from "react";
 import moment from "moment";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-// import 'react-day-picker/dist/style.css';
-// import "bootstrap/dist/css/bootstrap.min.css";
 
-
-const now = moment();
-// console.log(now.format("MMM Do YYYY"));
 export default class ExpenseForm extends React.Component {
     constructor(props){
         super(props);
         console.log("props is " , props);
-        // console.log("The description is " , this.props.expense.description); // This line was moved inside the constructor
         this.state = {
             description: props.expense ? props.expense.description : "",
             note: props.expense ?  props.expense.note : "",
-            amount:  props.expense?  (props.expense.amount / 100).toString() :  "",
+            amount:  props.expense?  (props.expense.amount).toString() :  "",
             createdAt: props.expense ?  moment(props.expense.createdAt).toDate() : moment().toDate(),
             selected: undefined,
             error: ""
@@ -70,8 +61,8 @@ export default class ExpenseForm extends React.Component {
 
             this.props.onSubmit({
                 description: this.state.description,
-                amount: parseFloat(this.state.amount, 10) * 100,
-                note: this.state.amount, 
+                amount: parseFloat(this.state.amount, 10),
+                note: this.state.note, 
                 createdAt: this.state.createdAt.valueOf()})
 
         }
@@ -106,12 +97,6 @@ export default class ExpenseForm extends React.Component {
                     ></textarea>
                
                     <div>
-                    {/* <DatePicker
-                        
-                        onChange={this.handleDatePick}
-                        dateFormat="P"
-                        
-                    /> */}
                     <DatePicker
                         selected={this.state.createdAt}
                         onChange={this.handleDatePick}
@@ -124,6 +109,7 @@ export default class ExpenseForm extends React.Component {
                
                  
                     <button>Add Expense</button>
+                   
                
                   </div>
                   

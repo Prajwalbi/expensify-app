@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { removeExpense  } from "../actions/expenses";
+import { startRemoveExpense  } from "../actions/expenses";
 import { Link, useNavigate } from "react-router-dom";
 import moment from "moment";
 import numeral from "numeral";
@@ -47,8 +47,8 @@ const ExpenseItem = ({description , note, amount, createdAt, id , dispatch }) =>
             </p>
             
            
-             <button onClick={ () => (dispatch(removeExpense({ id })) )}>Remove Item</button>
-             <button onClick= {handleEditExpense} >Edit</button>
+             {/* <button onClick={ () => (dispatch(startRemoveExpense({ id })) )}>Remove Item</button> */}
+             {/* <button onClick= {handleEditExpense} >Edit</button> */}
         </div>
     );
 }

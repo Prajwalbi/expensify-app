@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 
-import { getDatabase, ref, remove, set, update,onValue, push , onChildRemoved, onChildChanged} from "firebase/database"; 
+import { getDatabase, ref, remove, set, update,onValue, push , onChildRemoved, onChildChanged , get} from "firebase/database"; 
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -25,7 +25,7 @@ const app = initializeApp(firebaseConfig);
 
 const database = getDatabase();
 
-export {  database as default,  ref, remove, set, update,onValue, push , onChildRemoved, onChildChanged }; 
+export {  database as default,  ref, remove, set, update,onValue, push , onChildRemoved, onChildChanged, get }; 
 
 
 

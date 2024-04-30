@@ -1,8 +1,9 @@
-import {legacy_createStore as createStore, combineReducers, applyMiddleware, compose} from 'redux';
+import {legacy_createStore as createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
 import expenseReducer from '../reducers/expenses.js';
 import filtersRedecer from '../reducers/filters.js';
-import { thunk } from 'redux-thunk';
+import { thunk } from 'redux-thunk'
+
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

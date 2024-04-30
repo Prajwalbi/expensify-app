@@ -1,5 +1,6 @@
 
-import database, { set, ref, push } from '../firebase/firebase';
+import database, { set, ref, push, onValue, remove, get, update } from '../firebase/firebase';
+
 export const addExpense = (expense) => {
     return {
         type: "ADD_EXPENSE",
@@ -9,6 +10,7 @@ export const addExpense = (expense) => {
 }
  
 export const startAddExpense = (expenseData = {}) => {
+    // console.log("startAddExpense thunk called");
     return async (dispatch) => { // Using async/await for asynchronous operation
         try {
             const { description = "", note = "", amount = 0, createdAt = 0 } = expenseData;
@@ -26,12 +28,6 @@ export const startAddExpense = (expenseData = {}) => {
     };
 };
 
-export const removeExpense = ({id} = {}) => {
-    return {
-        type: "REMOVE_EXPENSE",
-        id
-    }
-}
 
 export const editExpense = (id, updatedItems) => {
     return {
@@ -41,3 +37,67 @@ export const editExpense = (id, updatedItems) => {
     }
 
 }
+
+export const startEditExpense = (id , updatedItems) => {
+    return (dispatch) => {
+        const expenseRef = ref(database, `expenses/${id}`);
+        return update(expenseRef, updatedItems)
+        .then(dispatch(editExpense(id, updatedItems)))
+        .catch((e) => console.log(e))
+        
+        
+    }
+}
+
+// Action creators
+export const setExpenses = (expenses) => ({
+  type: "SET_EXPENSES",
+  expenses
+});
+
+// Thunk action creator
+export const startSetExpenses = () => {
+    // console.log("startSetExpenses thunk called");
+  return (dispatch) => {
+    const starCountRef = ref(database, 'expenses');
+    get(starCountRef).then((snapshot) => {
+      const expenses = [];
+      snapshot.forEach((childSnapshot) => {
+        const id = childSnapshot.key;
+        expenses.push({
+          id,
+          ...childSnapshot.val()
+        });
+      });
+      dispatch(setExpenses(expenses));
+    }).catch((error) => {
+      console.error("Error fetching expenses:", error);
+    });
+  };
+};
+
+
+
+
+
+export const removeExpense = ({id} = {}) => {
+    return {
+        type: "REMOVE_EXPENSE",
+        id
+    }
+}
+
+export const startRemoveExpense = ({ id } = {}) => {
+    return (dispatch) => {
+        const starCountRef = ref(database, `expenses/${id}`);
+        remove(starCountRef).then(() => {
+            dispatch(removeExpense({ id }));
+        }).catch((e) => {
+            console.log("the error from remove expense is " , e);
+        })
+    };
+};
+
+
+
+

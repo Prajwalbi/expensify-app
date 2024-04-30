@@ -1,29 +1,35 @@
 import React from "react";
 import { connect } from "react-redux";
-import { useParams , useNavigate} from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import ExpenseForm from "./ExpenseForm";
-import { editExpense } from "../actions/expenses";
+import { startEditExpense, startRemoveExpense } from "../actions/expenses";
 
 const EditExpensePage = (props) => {
-    const { id } = useParams();
+    const { id } = useParams(); // Get the id parameter from the URL
     const navigate = useNavigate();
+
+    // Find the expense with the matching id
+    const expense = props.expenses.find(expense => expense.id === id);
+
+    // If expense is not found, return null or display a message
+    if (!expense) {
+        return <div>Expense not found</div>;
+    }
+
     return (
         <div>
-            <p>User id is {id}</p>
-        
-            {props.expenses.map(expense => {
-                if (expense.id === id) {
-                    return <ExpenseForm
-                      key={expense.id} 
-                      expense={expense}
-                      onSubmit = {(expense) => {
-                        props.dispatch(editExpense(id, expense));
-                        console.log("Updated sucessfully " , id);
-                        navigate("/", { replace: true });
-                     }} />;
-                }
-                return null; // You need to return something if the condition is not met
-            })}
+            <ExpenseForm
+                key={expense.id}
+                expense={expense}
+                onSubmit={(updatedExpense) => {
+                    props.dispatch(startEditExpense(id, updatedExpense));
+                    navigate("/", { replace: true });
+                }}
+            />
+            <button onClick={() => {
+                props.dispatch(startRemoveExpense({ id }));
+                navigate("/", { replace: true });
+            }}>Remove Item</button>
         </div>
     );
 }
