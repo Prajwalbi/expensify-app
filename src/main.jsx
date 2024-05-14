@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import DummyData from './playground/DummyData.jsx';
+import { AuthProvider } from './contexts/authContext/index.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
+  <AuthProvider>
     <App />
-    // <DummyData />
+    </AuthProvider>
+   
   // {/* </React.StrictMode>*/}
 );

@@ -11,11 +11,12 @@ export const addExpense = (expense) => {
  
 export const startAddExpense = (expenseData = {}) => {
     // console.log("startAddExpense thunk called");
-    return async (dispatch) => { // Using async/await for asynchronous operation
+    return async (dispatch, getState) => { // Using async/await for asynchronous operation
         try {
+            const uid = getState().auth.uid ;
             const { description = "", note = "", amount = 0, createdAt = 0 } = expenseData;
             const expense = { description, note, amount, createdAt };
-            const expenseRef = ref(database, 'expenses');
+            const expenseRef = ref(database, `users/${uid}/expenses`);
             const pushExpenseRef = push(expenseRef);
             await set(pushExpenseRef, expense); // Wait for the set operation to complete
             dispatch(addExpense({
@@ -39,8 +40,9 @@ export const editExpense = (id, updatedItems) => {
 }
 
 export const startEditExpense = (id , updatedItems) => {
-    return (dispatch) => {
-        const expenseRef = ref(database, `expenses/${id}`);
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid ;
+        const expenseRef = ref(database, `users/${uid}/expenses/${id}`);
         return update(expenseRef, updatedItems)
         .then(dispatch(editExpense(id, updatedItems)))
         .catch((e) => console.log(e))
@@ -58,8 +60,9 @@ export const setExpenses = (expenses) => ({
 // Thunk action creator
 export const startSetExpenses = () => {
     // console.log("startSetExpenses thunk called");
-  return (dispatch) => {
-    const starCountRef = ref(database, 'expenses');
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    const starCountRef = ref(database, `users/${uid}/expenses`);
     get(starCountRef).then((snapshot) => {
       const expenses = [];
       snapshot.forEach((childSnapshot) => {
@@ -88,8 +91,9 @@ export const removeExpense = ({id} = {}) => {
 }
 
 export const startRemoveExpense = ({ id } = {}) => {
-    return (dispatch) => {
-        const starCountRef = ref(database, `expenses/${id}`);
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid ;
+        const starCountRef = ref(database, `users/${uid}/expenses/${id}`);
         remove(starCountRef).then(() => {
             dispatch(removeExpense({ id }));
         }).catch((e) => {

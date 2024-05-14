@@ -23,12 +23,12 @@ const EditExpensePage = (props) => {
                 expense={expense}
                 onSubmit={(updatedExpense) => {
                     props.dispatch(startEditExpense(id, updatedExpense));
-                    navigate("/", { replace: true });
+                    navigate("/dashboard", { replace: true });
                 }}
             />
             <button onClick={() => {
                 props.dispatch(startRemoveExpense({ id }));
-                navigate("/", { replace: true });
+                navigate("/dashboard", { replace: true });
             }}>Remove Item</button>
         </div>
     );

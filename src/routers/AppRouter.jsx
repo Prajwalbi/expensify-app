@@ -6,30 +6,30 @@ import EditExpensePage from "../components/EditExpensePage";
 import HelpPage from "../components/HelpPage";
 import NotFoundPage from "../components/NotFoundPage";
 import Header from "../components/Header";
+import Login from "../components/Login";
+import PrivateRoute from "./PrivateRoute";
 
 const AppRouter = () => {
     return (
         <BrowserRouter>
             <div>
-                <Header />
+                {/* <Header /> */}
                 <Routes>
-                    <Route path="/" element={ <ExpenseDashBoardPage />} ></Route>
+                    <Route path="/" element={ <Login/> } ></Route>
+                    <Route element={<PrivateRoute />}>
+                   
+                    <Route path="/dashboard" element={<ExpenseDashBoardPage/>}></Route>
                     <Route path="/home" element={ <AddExpensePage />}>  </Route>
                     <Route path="/edit/:id"  element={ <EditExpensePage />}> </Route>
+                    </Route>
                     <Route path="/help"  element={ <HelpPage />}> </Route>
                     <Route path="*" element={ <NotFoundPage />}> </Route>
-                 
-                    </Routes> 
                     
-                {/* </Switch> */}
+                    </Routes> 
             </div>
         </BrowserRouter>
     );
 }
-
-
-
-
 export { AppRouter as default };
 
 
