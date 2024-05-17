@@ -37,7 +37,7 @@ const Header = () => {
                 <div className="content-container">
                     <div className="header__content">
                         <Link className="header__title" to="/dashboard" >
-                            <h1>Expensify</h1>
+                            <h1>Budget Monitor</h1>
                         </Link>
                         {/* <NavLink to="/home" >Add Expense</NavLink> */}
                         <button className="button button--link" onClick={() => { doSignOut().then(() => {navigate("/")})}}>Logout</button>
