@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthProvider } from './contexts/authContext/index.jsx';
 import { useAuth } from './contexts/authContext/index.jsx';
 import { login, logout } from './actions/auth.js';
+// import renderApp from './main.jsx';
 const App = () =>{
   // const store = configureStore();
   // useEffect(() => {
@@ -26,8 +27,10 @@ const App = () =>{
       store.dispatch(login(userId));
       console.log("The user id is " , userId);
       store.dispatch(startSetExpenses());
+      // renderApp();
     }else{
       store.dispatch(logout());
+      // renderApp();
     }
   }, [userLoggedIn]);
 
@@ -45,22 +48,59 @@ const App = () =>{
         </div>);
 
 }
-// import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-// const auth = getAuth();
-// onAuthStateChanged(auth, (user) => {
-//   if (user) {
-//     // https://firebase.google.com/docs/reference/js/auth.user
-//     const uid = user.uid;
-//     const navigate = useNavigate();
-//     navigate("/dashboard", true);
-//     console.log("User logged in", uid);
-//   } else {
-//     console.log("User logged out");
-//   }
-// });
 
 export default App;
+
+// import React, { useState, useEffect } from 'react';
+// import ReactDOM from 'react-dom';
+// import "./components/styles/styles.scss";
+// import { Provider } from 'react-redux';
+// import AppRouter from './routers/AppRouter';
+// import configureStore from './store/configureStore';
+// import { startSetExpenses } from './actions/expenses';
+// import 'normalize.css/normalize.css';
+// // import { firebase } from './firebase/firebase';
+// // import LoadingPage from './components/LoadingPage';
+// import { AuthProvider } from './contexts/authContext/index.jsx';
+// import { useAuth } from './contexts/authContext/index.jsx';
+// import { login, logout } from './actions/auth.js';
+
+// const App = () => {
+//   const [isLoading, setIsLoading] = useState(true);
+//   const { userLoggedIn, userId , loading} = useAuth();
+//   const store = configureStore();
+
+//   useEffect(() => {
+//     if (userLoggedIn) {
+//       store.dispatch(login(userId));
+//       store.dispatch(startSetExpenses());
+//       setIsLoading(false)
+//     } else {
+//       setIsLoading(false);
+//       store.dispatch(logout());
+//     }
+//   }, [userLoggedIn]);
+
+//   return (
+//     <div>
+//       {isLoading ? (
+//         // <LoadingPage />
+//         <p>loading....</p>
+//       ) : (
+//         <Provider store={store}>
+//           <AuthProvider>
+//             <AppRouter />
+//           </AuthProvider>
+//         </Provider>
+//       )}
+//     </div>
+//   );
+// };
+
+// // ReactDOM.render(<App />, document.getElementById('root'));
+// export default App;
+
 
 
 

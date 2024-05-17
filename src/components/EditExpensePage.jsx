@@ -17,7 +17,13 @@ const EditExpensePage = (props) => {
     }
 
     return (
-        <div>
+            <div>
+                <div className="page-header">
+                <div className="content-container">
+                    <h1 className="page-header__title">Edit Expense</h1>
+                </div>
+            </div>
+            <div className="content-container">
             <ExpenseForm
                 key={expense.id}
                 expense={expense}
@@ -26,10 +32,11 @@ const EditExpensePage = (props) => {
                     navigate("/dashboard", { replace: true });
                 }}
             />
-            <button onClick={() => {
+            <button  className="button button--seconadry"onClick={() => {
                 props.dispatch(startRemoveExpense({ id }));
                 navigate("/dashboard", { replace: true });
-            }}>Remove Item</button>
+            }}>Remove Expense</button>
+            </div>
         </div>
     );
 }

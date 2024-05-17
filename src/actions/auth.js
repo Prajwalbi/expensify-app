@@ -1,5 +1,7 @@
-import { getAuth, signInWithPopup, signOut} from "firebase/auth";
+import { getAuth, signInWithPopup, signOut } from "firebase/auth";
+import { doSignOut } from "../firebase/auth";
 import { googleAuthProvider } from "../firebase/firebase";
+import { useNavigate } from 'react-router-dom';
 
 // export const startLogin = () => {
 //     const auth = getAuth();
@@ -98,9 +100,11 @@ export const startLogin = () => {
 export const logout = () => ({
     type: "LOGOUT"
 })
+
 export const startLogout = () => {
-    return () => {
-        const auth = getAuth();
-        signOut(auth);
+    const navigate = useNavigate();
+    return () => { 
+        doSignOut()
+        .then(() => {navigate("/")})
     }
 }

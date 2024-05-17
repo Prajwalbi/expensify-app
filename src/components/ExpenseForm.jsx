@@ -73,48 +73,50 @@ export default class ExpenseForm extends React.Component {
         const { description, note, amount, selected } = this.state;
        
         return (
-            <div>
-                {this.state.error && <p>{this.state.error}</p>}
-                <form   onSubmit={ this.onSubmit }>
-                    <div style={{ display:"flex" }}>
+                <form  className="form" onSubmit={ this.onSubmit }>
+                {this.state.error && <p className="form__error">{this.state.error}</p>} 
                     <input
                         type="text"
                         placeholder="Description"
                         autoFocus
+                        className="text-input"
                         value={description}
                         onChange={this.onDescriptionChange}
                     />
                     <input
                         type="text"
                         placeholder="Amount"
+                        className="text-input"
                         value={amount}
                         onChange={this.onAmountChange}
                     />
                     <textarea
                         placeholder="Add a note for your expense (optional)"
+                        className="textarea"
                         value={note}
                         onChange={this.onNoteChange}
                     ></textarea>
                
                     <div>
                     <DatePicker
+                        className="text-input"
                         selected={this.state.createdAt}
                         onChange={this.handleDatePick}
                         dateFormat="P"
-                        showIcon
+                        // showIcon
                         toggleCalendarOnIconClick
                     />
                     </div>
-                       
+                    <div>
+                    <button className="button">Add Expense</button>
+                    </div>   
                
                  
-                    <button>Add Expense</button>
                    
                
-                  </div>
-                  
+                 
+                
                 </form>
-            </div>
         );
     }
 }

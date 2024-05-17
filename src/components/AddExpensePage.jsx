@@ -7,17 +7,23 @@ import { useNavigate } from "react-router-dom";
 const AddExpensePage = (props) =>{
     const navigate = useNavigate();
     return <div>
-        <h1>Add Expense</h1>
-        <ExpenseForm 
+        <div className="page-header">
+            <div className="content-container">
+                <h1 className="page-header__title">Add Expense</h1>
+            </div>
+        </div>
+        <div className="content-container">
+            <ExpenseForm 
 
-            onSubmit = {(expense) => {
-                console.log("add expense " ,expense);
-                props.startAddExpense(expense); // Dispatch the action using props
-                navigate("/dashboard", { replace: true })
-                
-            }}
-          
-        />
+                onSubmit = {(expense) => {
+                    console.log("add expense " ,expense);
+                    props.startAddExpense(expense); // Dispatch the action using props
+                    navigate("/dashboard", { replace: true })
+                    
+                }}
+            
+            />
+        </div>
     </div>
   }
 

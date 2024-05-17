@@ -14,7 +14,7 @@ numeral.register('locale', 'in', {
     },
     abbreviations: {
         thousand: 'k',
-        million: 'm',
+        a: 'm',
         billion: 'b',
         trillion: 't'
     },
@@ -34,22 +34,15 @@ const ExpenseItem = ({description , note, amount, createdAt, id , dispatch }) =>
     const handleEditExpense = () => {
         navigate(`/edit/${id}`);
     }
-    const formattedAmount = numeral(amount / 100).format('0,0.00a');
+    const formattedAmount = numeral(amount).format('0,0.00a');
     return (
-        <div>
-           
-            <Link to={ `/edit/${id}`} > 
-            <p>{description}</p> </Link>
-            <p>
-            ₹{formattedAmount} 
-                -
-                {moment(createdAt).format('MMMM Do, YYYY')}
-            </p>
-            
-           
-             {/* <button onClick={ () => (dispatch(startRemoveExpense({ id })) )}>Remove Item</button> */}
-             {/* <button onClick= {handleEditExpense} >Edit</button> */}
-        </div>
+            <Link className="list-item" to={ `/edit/${id}`} > 
+            <div>
+                <p className="list-utem__title">{description}</p> 
+                <span className="list-item__sub-title">{moment(createdAt).format('MMMM Do, YYYY')}</span>
+            </div>
+            <h3 className="list-item__data"> ₹{formattedAmount} </h3>
+            </Link>
     );
 }
 

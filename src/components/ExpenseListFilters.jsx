@@ -64,34 +64,49 @@ const ExpenseListFilters = (props) => {
   };
 
   return (
-    <div>
-      <input
-        value={props.filters.text}
-        onChange={(e) => {
-          props.dispatch(setTextFilter(e.target.value));
-        }}
-      />
-      Sort By:{" "}
-      <select
-        value={props.filters.sortBy}
-        onChange={(event) => {
-          event.target.value === "amount"
-            ? props.dispatch(sortByAmount())
-            : props.dispatch(sortByDate());
-        }}
-      >
-        <option value="date">Date</option>
-        <option value="amount">Amount</option>
-      </select>
-      <DatePicker
-        selected={props.filters.startDate}
-        onChange={onStartDateChange}
-      />
-      <DatePicker
-        selected={props.filters.endDate}
-        onChange={onEndDateChange}
-        minDate={props.filters.startDate}
-      />
+    <div className="content-container">
+      <div className="input-group">
+        <div className="input-group__item">
+            <input
+            type="text"
+            className="text-input"
+            value={props.filters.text}
+            onChange={(e) => {
+              props.dispatch(setTextFilter(e.target.value));
+            }}
+            placeholder="Search expenses"
+            />
+        </div>
+        <div className="input-group__item">
+            <select
+            className="select"
+            value={props.filters.sortBy}
+            onChange={(event) => {
+              event.target.value === "amount"
+                ? props.dispatch(sortByAmount())
+                : props.dispatch(sortByDate());
+            }}
+          >
+            <option value="date">Date</option>
+            <option value="amount">Amount</option>
+          </select>
+        </div>
+        <div className="input-group__item">
+            <DatePicker
+             className="text-input"
+            selected={props.filters.startDate}
+            onChange={onStartDateChange}
+            />
+        </div>
+        <div className="input-group__item">
+            <DatePicker
+             className="text-input"
+            selected={props.filters.endDate}
+            onChange={onEndDateChange}
+            minDate={props.filters.startDate}
+            />
+        </div>
+      </div>
     </div>
   );
 };

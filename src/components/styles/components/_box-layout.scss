@@ -1,0 +1,32 @@
+.box-layout{
+    background: url('/images/login.jpg');
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-layout__box{
+    // background-color: fade-out($color: white , $amount: 0.1);
+    background-color: #ffcc00;
+    border-radius: 5px;
+    text-align: center;
+    width: 25rem;
+    padding: $l-size $m-size;
+}
+
+.box-layout__title{
+    margin: 0 0 $m-size 0;
+    line-height: 1;
+}
+
+
+
+
+
+
+
+// <button class="button-29" role="button">Button 29</button>

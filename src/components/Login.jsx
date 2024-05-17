@@ -40,8 +40,13 @@ const Login = () => {
 
     return (<div>
         {userLoggedIn && <Navigate  to={"/dashboard"} replace={true}/>}
-         <button onClick={ clickHandler }>Login</button>
-        
+        <div className="box-layout">
+            <div className="box-layout__box">
+                <h1 className="box-layout__title">Budget App</h1>
+                <p>It's time to get your expenses under control</p>
+                 <button onClick={ clickHandler } className="button-29">Login with Google</button>
+            </div>
+         </div>
     </div>)
 }
 

@@ -3,6 +3,7 @@ import getVisibleExpenses from "../selectors/expenses";
 import selectExpensesTotal from "../selectors/expenses-total";
 import { connect } from "react-redux";
 import numeral from "numeral";
+import { Link } from "react-router-dom";
 
 // const ExpensesSummary = (props) => {
 
@@ -24,10 +25,15 @@ import numeral from "numeral";
 
 //other way 
 const ExpensesSummary = ({expenseCount, expenseTotal}) => {
-    const formattedAmount = numeral(expenseTotal / 100).format('0,0.00a');
+    const formattedAmount = numeral(expenseTotal).format('0,0.00a');
    return (
-        <div>
-           <h1>Viewing { expenseCount } { expenseCount === 1 ? "expense" : "expenses"} totalling  ₹{formattedAmount} </h1> 
+        <div className="page-header">
+            <div className="content-container">
+                <h1 className="page-header__title">Viewing  <span>{ expenseCount } </span> { expenseCount === 1 ? "expense" : "expenses"} totalling <span>₹{formattedAmount}</span>  </h1> 
+                <div className="page-header__actions">
+                    <Link to="/home" className="button">Add Expense</Link>
+                </div>
+            </div>
         </div>
    );
 }
